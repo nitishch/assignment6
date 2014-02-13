@@ -1,16 +1,20 @@
 #!/bin/bash
-runningOutput=$(ps aux | sed -n '/\/mybins\/cs296_28_exe/p')
-running=$(ps aux | sed -n '/\/mybins\/cs296_28_exe/p' | wc -l)
-#echo $running
+userrunning=$(ps aux | sed -n '/\/mybins\/cs296_28_exe/p' | sed -n '/\([^ ]*\) .*$/\1/p')
+pid=$(pidof ./mybins/cs296_28_exe)
+running=$(echo $pid | wc -w)
 if [ $running -eq 1 ]
 then
-	pid=$(echo $runingOutput | sed -n "s/${USER}   \([0-9]*\).*$/\1/p")
 	echo ${pid}
-	echo ${USER}
-	echo "Do you want to kill the process?"
-	read answer
-	if [ $answer -eq y ]
+	echo ${userrunning}
+	if [ ${user} == ${USER} ]
 	then
-		kill ${pid}
+		echo "Do you want to kill the process?"
+		read answer
+		if [ $answer == "y" ]
+		then
+			kill ${pid}
+		fi
+	else
+		echo "${USER} doesn't have permissions to kill the process"
 	fi
 fi
