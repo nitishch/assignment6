@@ -4,7 +4,10 @@ then
 	tar -cf src.tar src
 #	echo "tarred"
 	gzip src.tar
-else
+fi
+exit
+if [ $1 -eq 2]
+then
 	cp -r src dummy
 	cd dummy
 #	echo "zipped and tarred"
