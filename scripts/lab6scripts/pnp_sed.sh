@@ -1,2 +1,3 @@
 #!/bin/bash
-sed 's/``/`/g' austen.txt | sed "s/''/'/g" | sed 's/Fitzwilliam/Dinesh/g' | sed 's/Darcy/Nitish/g' | sed 's/Elizabeth/Mahindar/g' > ./data/pnp_austen_cs296.txt
+sed 's/``/`/g' ./data/austen.txt | sed "s/''/'/g" | sed 's/Fitzwilliam/Mahindar/g' | sed 's/Darcy/Nitish/g' | sed 's/Elizabeth/Dinesh/g' > ./data/pnp_austen_cs296.txt
+# Fitzwilliam is Mahindar, Darcy is Nitish, Elizabeth is Dinesh

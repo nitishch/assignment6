@@ -15,6 +15,24 @@ function count {
 	done
 	cd $present
 }
-
+function myprint {
+	local present=$PWD
+	cd $1
+	for i in $(ls)
+	do
+		if [ -d $i ]
+		then
+#			toreturn=$(($toreturn+1))
+			myprint $i
+		else
+			if [ -x $i ]
+			then
+				echo $i
+			fi
+		fi
+	done
+	cd $present
+}
 count $1
 echo $toreturn
+myprint $1
